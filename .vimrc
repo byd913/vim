@@ -22,6 +22,9 @@ set autoread
 "vi compatible
 set nocompatible
 
+"set clipboard for windows
+set clipboard+=unnamed
+
 "允许backspace和光标跨越行边界
 set backspace=2
 set whichwrap+=<,>,h,l
