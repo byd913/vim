@@ -3,7 +3,13 @@ syntax on
 filetype plugin indent on
 
 color desert
-"set guifont=Monaco:h12
+set encoding=utf-8
+"set background=dark
+"color solarized
+set guifont=Monaco\ 12
+"set guifont=Consolas:h15
+"set guifont=Inconsolata:h13
+"set guifont=Monospace\ 13
 set nu
 
 "继承前一行的缩进方式
@@ -90,10 +96,11 @@ autocmd FileType c,cpp  map <buffer> <F5> :call CompileRunCpp()<cr>
 autocmd FileType java   map <buffer> <F5> :call CompileRunJava()<cr>
 autocmd FileType python map <buffer> <F5> :call CompileRunPython()<cr>
 autocmd FileType dosbatch map <buffer> <F5> :call CompileRunCmd()<cr>
+autocmd FileType sh map <buffer> <F5> :call CompileRunSh()<cr>
 func! CompileRunCpp()
     exec "wall"
     exec "!g++ -g3 % -o %<"
-    exec "!%<"
+    exec "!./%<"
 endfun
 func! CompileRunJava()
     exec "wall"
@@ -107,6 +114,10 @@ endfun
 func! CompileRunCmd()
     exec "wall"
     exec "!cmd /c %"
+endfun
+func! CompileRunSh()
+    exec "wall"
+    exec "!bash %"
 endfun
 
 autocmd FileType c,cpp map <buffer> <C-F7> :call CompileCpp()<cr>
@@ -172,6 +183,7 @@ inoremap <expr><C-h> neocomplcache#smart_close_popup()."\<C-h>"
 inoremap <expr><BS> neocomplcache#smart_close_popup()."\<C-h>"
 inoremap <expr><C-y>  neocomplcache#close_popup()
 inoremap <expr><C-e>  neocomplcache#cancel_popup()
+inoremap <expr><Enter>  pumvisible() ? "\<C-Y>" : "\<Enter>" 
 " Close popup by <Space>.
 "inoremap <expr><Space> pumvisible() ? neocomplcache#close_popup() : "\<Space>"
 
@@ -186,7 +198,7 @@ inoremap <expr><C-e>  neocomplcache#cancel_popup()
 "let g:neocomplcache_enable_insert_char_pre = 1
 
 " AutoComplPop like behavior.
-"let g:neocomplcache_enable_auto_select = 1
+let g:neocomplcache_enable_auto_select = 1
 
 " Shell like behavior(not recommended).
 "set completeopt+=longest

@@ -91,42 +91,6 @@ noremap <silent> <c-F11> :BufExplorerVerticalSplit<CR>
 "set for TagHighlight
 nnoremap <silent> <c-F8> :UpdateTypesFile<CR>
 
-"set for syntastic
-let g:syntastic_always_populate_loc_list=1
-
-"set for compile
-autocmd FileType c,cpp  map <buffer> <F5> :call CompileRunCpp()<cr>
-autocmd FileType java   map <buffer> <F5> :call CompileRunJava()<cr>
-autocmd FileType python map <buffer> <F5> :call CompileRunPython()<cr>
-autocmd FileType dosbatch map <buffer> <F5> :call CompileRunCmd()<cr>
-func! CompileRunCpp()
-    exec "wall"
-    exec "!g++ -g3 % -o %<"
-    exec "!%<"
-endfun
-func! CompileRunJava()
-    exec "wall"
-    exec "!javac %"
-    exec "!java %<"
-endfun
-func! CompileRunPython()
-    exec "wall"
-    exec "!python %"
-endfun
-func! CompileRunCmd()
-    exec "wall"
-    exec "!cmd /c %"
-endfun
-
-autocmd FileType c,cpp map <buffer> <C-F7> :call CompileCpp()<cr>
-autocmd FileType java  map <buffer> <C-F7> :call CompileJava()<cr>
-func! CompileCpp()
-    exec "wall"
-    exec "!g++ -g3 -c %"
-endfun
-func! CompileJava()
-    exec "wall"
-    exec "!javac %"
-endfun
-
+"close syntastic
+let g:loaded_syntastic_plugin = 1
 
