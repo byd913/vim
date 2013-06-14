@@ -11,6 +11,8 @@
 "
 "============================================================================
 
+let g:loaded_syntastic_plugin = 1
+
 if exists("g:loaded_syntastic_plugin")
     finish
 endif
