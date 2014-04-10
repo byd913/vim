@@ -336,7 +336,7 @@ endif
 
 " Default grep file list
 if !exists("Grep_Default_Filelist")
-    let Grep_Default_Filelist = '*'
+    let Grep_Default_Filelist = '*.h *.cpp *.c'
 endif
 
 " Default grep options
