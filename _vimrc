@@ -3,7 +3,7 @@ syntax on
 filetype plugin indent on
 
 "txtbrowser
-au BufRead, BufNewFile *.txt setlocal ft=txt
+au BufRead,BufNewFile *.txt setlocal ft=txt
 
 color desert
 set encoding=gbk
@@ -55,6 +55,7 @@ set mouse=a
 set selection=exclusive
 set selectmode=mouse,key
 set cursorline
+set cc=80
 
 set guioptions-=m
 set guioptions-=T
@@ -69,11 +70,18 @@ imap  :wall<cr>
 "nerdtree
 nmap wm :NERDTree<cr>
 
+"ctags 
+nmap<silent> <C-F8> :!ctags -R<cr>
+
 "tarbar 
 nmap<silent> <F4> :TagbarToggle<cr>
 let g:tagbar_ctags_bin = 'ctags'
 let g:tagbar_width = 20
 let g:tagbar_left = 1
+
+"quickfix window
+map <F6> :cp<cr>
+map <F7> :cn<cr>
 
 "nerd_commenter
 map <F9> <leader>cc
@@ -105,7 +113,7 @@ autocmd FileType sh map <buffer> <F5> :call CompileRunSh()<cr>
 func! CompileRunCpp()
     exec "wall"
     exec "!g++ -g3 % -o %<"
-    exec "!./%<"
+    exec "!%<"
 endfun
 func! CompileRunJava()
     exec "wall"

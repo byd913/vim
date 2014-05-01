@@ -341,7 +341,7 @@ endif
 
 " Default grep options
 if !exists("Grep_Default_Options")
-    let Grep_Default_Options = ''
+    let Grep_Default_Options = '-r -w --color'
 endif
 
 " Use the 'xargs' utility in combination with the 'find' utility. Set this

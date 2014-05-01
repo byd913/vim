@@ -7,6 +7,12 @@ snippet readfile
 			v.insert(v.end(), buf, buf + len);
 		fclose($2);
 	}${3}
+
+# using 
+snippet using
+	using namespace ${1:std};
+snippet co
+	std::cout << ${1} << endl;
 # std::map
 snippet map
 	std::map<${1:key}, ${2:value}> map${3};
