@@ -17,6 +17,9 @@ set guifont=Monaco:h10
 "set guifont=Monospace\ 13
 set nu
 
+"set directory to the file in current window
+set autochdir
+
 "继承前一行的缩进方式
 set autoindent
 set cindent
@@ -29,6 +32,8 @@ set softtabstop=4
 set expandtab
 "当文件修改时自动读取文件
 set autoread
+
+"set grepprg=grep\ -n
 
 "vi compatible
 set nocompatible
@@ -237,3 +242,13 @@ let g:neocomplcache_omni_patterns.cpp = '[^.[:digit:] *\t]\%(\.\|->\)\|\h\w*::'
 " For perlomni.vim setting.
 " https://github.com/c9s/perlomni.vim
 let g:neocomplcache_omni_patterns.perl = '\h\w*->\h\w*\|\h\w*::'
+
+""""CtrlP configure
+let g:ctrlp_by_filename = 1
+
+"powerline {
+set laststatus=2 
+set t_Co=256 
+let g:Powerline_symbols='fancy' 
+let Powerline_symbols = 'compatible' 
+"}
