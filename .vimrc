@@ -2,15 +2,23 @@ execute pathogen#infect()
 syntax on
 filetype plugin indent on
 
+"txtbrowser
+au BufRead,BufNewFile *.txt setlocal ft=txt
+
 color desert
-set encoding=utf-8
+set fileencodings=ucs-bom,utf-8,cp936,gb18030,big5,euc-jp,euc-kr,latin1
 "set background=dark
 "color solarized
-set guifont=Monaco\ 12
+"set guifont=Monaco\ 12
+set guifont=Monaco:h10
 "set guifont=Consolas:h15
 "set guifont=Inconsolata:h13
 "set guifont=Monospace\ 13
 set nu
+
+"set directory to the file in current window
+set autochdir
+let g:miniBufExplMapCTabSwitchBufs = 1
 
 "继承前一行的缩进方式
 set autoindent
@@ -24,6 +32,8 @@ set softtabstop=4
 set expandtab
 "当文件修改时自动读取文件
 set autoread
+
+"set grepprg=grep\ -n
 
 "vi compatible
 set nocompatible
@@ -50,6 +60,7 @@ set mouse=a
 set selection=exclusive
 set selectmode=mouse,key
 set cursorline
+set cc=80
 
 set guioptions-=m
 set guioptions-=T
@@ -64,11 +75,18 @@ imap  :wall<cr>
 "nerdtree
 nmap wm :NERDTree<cr>
 
+"ctags 
+nmap<silent> <C-F8> :!ctags -R<cr>
+
 "tarbar 
 nmap<silent> <F4> :TagbarToggle<cr>
 let g:tagbar_ctags_bin = 'ctags'
 let g:tagbar_width = 20
 let g:tagbar_left = 1
+
+"quickfix window
+map <F6> :cp<cr>
+map <F7> :cn<cr>
 
 "nerd_commenter
 map <F9> <leader>cc
@@ -100,7 +118,7 @@ autocmd FileType sh map <buffer> <F5> :call CompileRunSh()<cr>
 func! CompileRunCpp()
     exec "wall"
     exec "!g++ -g3 % -o %<"
-    exec "!./%<"
+    exec "!%<"
 endfun
 func! CompileRunJava()
     exec "wall"
@@ -186,12 +204,13 @@ inoremap <expr><C-e>  neocomplcache#cancel_popup()
 inoremap <expr><Enter>  pumvisible() ? "\<C-Y>" : "\<Enter>" 
 " Close popup by <Space>.
 "inoremap <expr><Space> pumvisible() ? neocomplcache#close_popup() : "\<Space>"
+"
 
 " For cursor moving in insert mode(Not recommended)
-"inoremap <expr><Left>  neocomplcache#close_popup() . "\<Left>"
-"inoremap <expr><Right> neocomplcache#close_popup() . "\<Right>"
-"inoremap <expr><Up>    neocomplcache#close_popup() . "\<Up>"
-"inoremap <expr><Down>  neocomplcache#close_popup() . "\<Down>"
+inoremap <expr><Left>  neocomplcache#close_popup() . "\<Left>"
+inoremap <expr><Right> neocomplcache#close_popup() . "\<Right>"
+inoremap <expr><Up>    neocomplcache#close_popup() . "\<Up>"
+inoremap <expr><Down>  neocomplcache#close_popup() . "\<Down>"
 " Or set this.
 "let g:neocomplcache_enable_cursor_hold_i = 1
 " Or set this.
@@ -202,7 +221,6 @@ let g:neocomplcache_enable_auto_select = 1
 
 " Shell like behavior(not recommended).
 "set completeopt+=longest
-"let g:neocomplcache_enable_auto_select = 1
 "let g:neocomplcache_disable_auto_complete = 1
 "inoremap <expr><TAB>  pumvisible() ? "\<Down>" : "\<C-x>\<C-u>"
 
@@ -224,3 +242,15 @@ let g:neocomplcache_omni_patterns.cpp = '[^.[:digit:] *\t]\%(\.\|->\)\|\h\w*::'
 " For perlomni.vim setting.
 " https://github.com/c9s/perlomni.vim
 let g:neocomplcache_omni_patterns.perl = '\h\w*->\h\w*\|\h\w*::'
+
+""""CtrlP configure
+let g:ctrlp_by_filename = 1
+
+"powerline {
+set laststatus=2 
+set t_Co=256 
+let g:Powerline_symbols='fancy' 
+let Powerline_symbols = 'compatible' 
+"}
+"
+nmap <F8> :UpdateTypesFile<cr>
