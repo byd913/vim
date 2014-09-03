@@ -313,3 +313,10 @@ if has("cscope")
     set cst
     set csverb
 endif
+
+"让vim记忆上次编辑的位置
+autocmd BufReadPost *
+			\ if line("'\"")>0&&line("'\"")<=line("$") |
+			\	exe "normal g'\"" |
+			\ endif
+"让vim记忆上次编辑的位置
