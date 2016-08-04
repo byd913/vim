@@ -5,7 +5,7 @@ filetype plugin indent on
 "txtbrowser
 au BufRead,BufNewFile *.txt setlocal ft=txt
 
-color desert
+color monokai
 set fileencodings=ucs-bom,utf-8,cp936,gb18030,big5,euc-jp,euc-kr,latin1
 "set background=dark
 "color solarized
