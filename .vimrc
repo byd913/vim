@@ -1,3 +1,8 @@
+if exists('$TMUX')
+    set term=screen-256color
+endif
+set term=screen
+
 execute pathogen#infect()
 syntax on
 filetype plugin indent on
@@ -6,18 +11,23 @@ filetype plugin indent on
 au BufRead,BufNewFile *.txt setlocal ft=txt
 
 color monokai
+
+set encoding=utf8
 set fileencodings=ucs-bom,utf-8,cp936,gb18030,big5,euc-jp,euc-kr,latin1
 "set background=dark
 "color solarized
 "set guifont=Monaco\ 12
-set guifont=Monaco:h10
+"set guifont=Monaco:h10
 "set guifont=Consolas:h15
 "set guifont=Inconsolata:h13
 "set guifont=Monospace\ 13
 set nu
 
+" Set 7 lines to the cursor - when moving vertically using j/k
+set so=7
+
 "set directory to the file in current window
-set autochdir
+"set autochdir
 let g:miniBufExplMapCTabSwitchBufs = 1
 
 "继承前一行的缩进方式
@@ -56,11 +66,10 @@ set nobackup
 setlocal noswapfile
 set bufhidden=hide
 "可以在buffer的任何地方使用鼠标
-set mouse=a
-set selection=exclusive
-set selectmode=mouse,key
+"set mouse=a
+"set selection=exclusive
+"set selectmode=mouse,key
 set cursorline
-set cc=80
 
 set guioptions-=m
 set guioptions-=T
@@ -86,11 +95,12 @@ let g:tagbar_left = 1
 
 "quickfix window
 map <F6> :cp<cr>
-map <F7> :cn<cr>
+"map <F7> :cn<cr>
 
 "nerd_commenter
-map <F9> <leader>cc
-map <F10> <leader>cu
+map <F9> <leader>c<space>
+" map <F10> <leader>cu
+let NERDSpaceDelims=1
 
 "switch between h and cpp files
 nnoremap <silent> <F12> :A<cr>
@@ -99,7 +109,7 @@ imap <silent> <F12> :A<cr>
 nnoremap <silent> <F3> :Grep<CR>
 
 "set for bufexplorer
-noremap <silent> <F11> :BufExplorer<CR>
+noremap <silent> <F7> :BufExplorer<CR>
 noremap <silent> <m-F11> :BufExplorerHorizontalSplit<CR>
 noremap <silent> <c-F11> :BufExplorerVerticalSplit<CR>
 
@@ -118,7 +128,7 @@ autocmd FileType sh map <buffer> <F5> :call CompileRunSh()<cr>
 func! CompileRunCpp()
     exec "wall"
     exec "!g++ -g3 % -o %<"
-    exec "!%<"
+    exec "!./%<"
 endfun
 func! CompileRunJava()
     exec "wall"
@@ -282,41 +292,18 @@ au Syntax * RainbowParenthesesLoadRound
 au Syntax * RainbowParenthesesLoadSquare
 au Syntax * RainbowParenthesesLoadBraces
 
-function Do_CsTag()
-    if(executable("cscope") && has("cscope") )
-        if(has('win32'))
-            silent! execute "!dir /b *.c,*.cpp,*.h,*.java,*.cs >> cscope.files"
-        else
-            silent! execute "!find . -name "*.h" -o -name "*.c" -o -name "*.cpp" -o -name "*.m" -o -name "*.mm" -o -name "*.java" -o -name "*.py" > cscope.files"
-        endif
-        silent! execute "!cscope -b"
-        if filereadable("cscope.out")
-            execute "cs add cscope.out"
-        endif
-    endif
-endf
-
-nmap <M-c> :call Do_CsTag()<CR>
-
-nmap <C-@>s :cs find s <C-R>=expand("<cword>")<CR><CR>:copen<CR>
-nmap <C-@>g :cs find g <C-R>=expand("<cword>")<CR><CR>
-nmap <C-@>c :cs find c <C-R>=expand("<cword>")<CR><CR>:copen<CR>
-nmap <C-@>t :cs find t <C-R>=expand("<cword>")<CR><CR>:copen<CR>
-nmap <C-@>e :cs find e <C-R>=expand("<cword>")<CR><CR>:copen<CR>
-nmap <C-@>f :cs find f <C-R>=expand("<cfile>")<CR><CR>:copen<CR>
-nmap <C-@>i :cs find i ^<C-R>=expand("<cfile>")<CR>$<CR>:copen<CR>
-nmap <C-@>d :cs find d <C-R>=expand("<cword>")<CR><CR>:copen<CR>
-
-if has("cscope")
-    set cscopequickfix=s-,c-,d-,i-,t-,e-
-    set csto=0
-    set cst
-    set csverb
-endif
-
 "让vim记忆上次编辑的位置
 autocmd BufReadPost *
 			\ if line("'\"")>0&&line("'\"")<=line("$") |
 			\	exe "normal g'\"" |
 			\ endif
 "让vim记忆上次编辑的位置
+"
+
+" do not ignore case
+set noic
+
+let g:vim_markdown_frontmatter=1
+
+set cc=120
+let g:pymode_virtualenv=0
