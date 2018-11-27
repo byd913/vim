@@ -307,3 +307,13 @@ let g:vim_markdown_frontmatter=1
 
 set cc=120
 let g:pymode_virtualenv=0
+
+" for mac copy and paste
+vmap <C-c> y:call system("pbcopy", getreg("\""))<CR>
+nmap <C-v> :call setreg("\"",system("pbpaste"))<CR>p
+
+let g:simple_todo_map_keys = 0
+nmap <c-i> <Plug>(simple-todo-new)
+" nmap <c-o> <Plug>(simple-todo-below)
+nmap <c-x> <Plug>(simple-todo-mark-as-done)
+nmap <c-u> <Plug>(simple-todo-mark-as-undone)
