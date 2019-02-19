@@ -333,4 +333,4 @@ inoreabbrev <expr> __
             \ '<c-o>:silent! TableModeDisable<cr>' : '__'
 
 " pydocstring
-nmap <silent> <c-m> <Plug>(pydocstring)
+nmap <silent> <c-k> <Plug>(pydocstring)
