@@ -331,3 +331,6 @@ inoreabbrev <expr> <bar><bar>
 inoreabbrev <expr> __
             \ <SID>isAtStartOfLine('__') ?
             \ '<c-o>:silent! TableModeDisable<cr>' : '__'
+
+" pydocstring
+nmap <silent> <C-_> <Plug>(Pydocstring)
