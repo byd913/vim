@@ -1,5 +1,5 @@
 """{{_header_}}
 
-:param {{_args_}}:
-:rtype: {{_return_type_}}
+{{_indent_}}Arguments:
+{{_nested_indent_}}{{_args_}}:
 """
