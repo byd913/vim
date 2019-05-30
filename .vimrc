@@ -318,6 +318,8 @@ nmap <c-i> <Plug>(simple-todo-new)
 nmap <c-x> <Plug>(simple-todo-mark-as-done)
 nmap <c-u> <Plug>(simple-todo-mark-as-undone)
 
+" vim-table-mode
+let g:table_mode_corner='|'
 function! s:isAtStartOfLine(mapping)
     let text_before_cursor = getline('.')[0 : col('.')-1]
     let mapping_pattern = '\V' . escape(a:mapping, '\')
