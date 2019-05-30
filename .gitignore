@@ -3,3 +3,8 @@ vimfiles
 *.cache
 *.pyc
 tags
+.swp
+*~
+.DS_Store
+tags
+vader.vim/
